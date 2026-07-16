@@ -1,0 +1,80 @@
+---
+title: "Simple Data Visualization Example"
+author: "Allissa Dillman PhD, Lisa Karstens PhD, Juliette Kudrick"
+date: "2026-07-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Purpose
+
+This script will read the contents of `pheno_select.csv` into RStudio and produce a simple data visualization looking at VO2 max data from the MoTrPAC dataset.
+
+## Load Libraries
+
+First, we load all of the libraries necessary for this analysis.
+
+**Note:** If you do not already have `ggplot2` or `here` installed on your machine, you will need to run `install.packages("ggplot2")` and `install.packages("here")` before running the `library` calls.
+
+```{r load_lib}
+
+library(ggplot2)
+library(here)
+
+```
+
+## Read Data
+
+Next, we read in `pheno_select.csv`, a csv file containing MoTrPAC data.
+
+```{r read_data}
+
+pheno_select <- read.csv(file = here("06_intro_to_R", "pheno_select.csv"))
+
+```
+
+## Examine Data
+
+Below we run a couple simple summary functions to make sure that we have the correct data.
+
+```{r eda}
+
+## dimensions of the object
+nrow(pheno_select)
+ncol(pheno_select)
+
+## number of unique participants
+length(unique(pheno_select$pid))
+
+## what variables do we have?
+colnames(pheno_select)
+```
+
+## Example Visualization
+
+Below, we create a simple histogram using `ggplot`.
+
+```{r example_viz}
+
+ggplot(pheno_select, aes(x = vo_max1)) + geom_histogram()
+
+```
+
+## Your Turn!
+
+Building off of the plot above, complete the following:
+
+-   Facet by sex of the mouse (call `facet_wrap()`)
+-   Fill in bars based on sex (`fill = sex`)
+
+```{r student_viz}
+
+ggplot(pheno_select, aes(x = vo_max1)) +
+  geom_histogram() 
+
+```
+
+Now that you have completed this data visualization task, save the rmd as <yourname>\_viz.Rmd. This file can by pushed to your repository.
