@@ -72,8 +72,9 @@ Building off of the plot above, complete the following:
 
 ```{r student_viz}
 
-ggplot(pheno_select, aes(x = vo_max1)) +
-  geom_histogram() 
+ggplot(pheno_select, aes(x = vo_max1, fill = sex)) +
+  geom_histogram() +
+  facet_wrap(~sex)
 
 ```
 
